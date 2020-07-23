@@ -12,6 +12,16 @@ public class Ingridiens {
     private Integer amount;
     @ManyToOne
     private Recipe recipe;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMesure uom;
+
+    public UnitOfMesure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMesure uom) {
+        this.uom = uom;
+    }
 
     public String getId() {
         return id;
