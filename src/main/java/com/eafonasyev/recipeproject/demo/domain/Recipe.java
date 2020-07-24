@@ -18,8 +18,19 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes note;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL ,
+               mappedBy = "recipe")
     private Set<Ingridiens> ingridiens;
+
+    @Enumerated(value = EnumType.STRING)
+    private Difficulties difficulties;
+
+    @ManyToMany
+    @JoinTable(name = "recipe_categories",
+    joinColumns = @JoinColumn(name = "recipe_id"),
+    inverseJoinColumns = @JoinColumn(name = "categories_id")
+    )
+    private Set<Categories> categories;
 
     public String getDescription() {
         return description;
